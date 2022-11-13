@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Sign up</title>
+    </head>
+    <body class="align">
+
+      <div class="login">
+
+        <header class="login__header">
+          <h2><svg class="icon">
+              <use xlink:href="#icon-lock" />
+            </svg>Sign Up</h2>
+        </header>
+
+        <div class="login__form">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          
+            <div>
+              <label for="email">E-mail address</label>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"email" %>
+            </div>
+
+            <div>
+              <label for="password">Password</label>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "current-password",class:"password" %>
+            </div>
+
+            <div>
+              <label for="password">Password Confirmation</label>
+              <%= f.password_field :password_confirmation, autocomplete: "current-password",class:"password" %>
+            </div>
+
+            <div>
+              <p></p>
+              <%= f.submit "Sign up", class:"button",data: {turbo:false} %>
+              <%= render "devise/shared/links" %>
+              <a href="/">Home</a>
+              <%= render "devise/shared/error_messages", resource: resource %>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+    
+      <svg xmlns="http://www.w3.org/2000/svg" class="icons">
+
+        <symbol id="icon-lock" viewBox="0 0 448 512">
+          <path d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z" />
+        </symbol>
+
+      </svg>
+      
+    </body>
+</html>

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  book: one
+  user: one
+  copy_number: 1
+  date_rent: 2022-11-07
+  date_return: 2022-11-07
+  date_return_user: 2022-11-07
+
+two:
+  book: two
+  user: two
+  copy_number: 1
+  date_rent: 2022-11-07
+  date_return: 2022-11-07
+  date_return_user: 2022-11-07

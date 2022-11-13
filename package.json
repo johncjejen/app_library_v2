@@ -1,0 +1,18 @@
+{
+  "name": "app",
+  "private": "true",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.0.1",
+    "bootstrap": "^5.2.2",
+    "css": "^3.0.0",
+    "jquery": "^3.6.1",
+    "popper.js": "^1.16.1"
+  },
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.2.4"
+  }
+}

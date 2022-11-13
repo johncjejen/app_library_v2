@@ -1,0 +1,560 @@
+/* line 1, app/assets/stylesheets/theme.scss */
+* {
+  box-sizing: inherit;
+}
+
+/* line 5, app/assets/stylesheets/theme.scss */
+html {
+  box-sizing: border-box;
+}
+
+/* line 9, app/assets/stylesheets/theme.scss */
+h1 {
+  text-align: center;
+  font-size: 80px;
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: -110px;
+  margin-bottom: -15px;
+  color: #0e043e;
+  text-shadow: 3px  0px 0px white, 0px  3px 0px white, -3px  0px 0px white, 0px -3px 0px white;
+}
+
+/* line 22, app/assets/stylesheets/theme.scss */
+.h2_class {
+  text-align: center;
+  font-size: 50px;
+  font-family: Helvetica;
+  color: #0e043e;
+}
+
+/* line 29, app/assets/stylesheets/theme.scss */
+.title_center {
+  border-radius: 40px;
+  color: #495459;
+  background-color: #b31ba635;
+  width: 400px;
+  justify-items: center;
+  display: flex;
+}
+
+/* line 39, app/assets/stylesheets/theme.scss */
+#font_create {
+  font-size: 25px;
+}
+
+/* line 43, app/assets/stylesheets/theme.scss */
+#back_btn {
+  background-color: #495459;
+  color: white;
+  height: 50px;
+  width: 140px;
+  float: right;
+  margin: 20px;
+  font-size: 35px;
+  border-radius: 20px;
+}
+
+/* line 54, app/assets/stylesheets/theme.scss */
+#back_btn:hover {
+  box-shadow: 3px 8px 8px #496de1;
+}
+
+/* line 58, app/assets/stylesheets/theme.scss */
+#create_btn {
+  background-color: #495459;
+  color: white;
+  height: 50px;
+  width: 140px;
+  margin: 20px;
+  font-size: 35px;
+  border-radius: 20px;
+}
+
+/* line 68, app/assets/stylesheets/theme.scss */
+#create_btn:hover {
+  box-shadow: 3px 8px 8px #49c8e1;
+}
+
+/* line 72, app/assets/stylesheets/theme.scss */
+body {
+  background-color: #c0c0c0;
+  font-family: 'Varela Round', sans-serif;
+  line-height: 1.5;
+  min-block-size: 100vh;
+  padding: 5vmin;
+  margin: 0;
+}
+
+/* line 82, app/assets/stylesheets/theme.scss */
+input {
+  background-image: none;
+  border: none;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s;
+}
+
+/* line 91, app/assets/stylesheets/theme.scss */
+svg {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+/* ---------- ALIGN ---------- */
+/* line 98, app/assets/stylesheets/theme.scss */
+.align {
+  display: grid;
+  place-items: center;
+}
+
+/* ---------- BUTTON ---------- */
+/* line 105, app/assets/stylesheets/theme.scss */
+.button {
+  background-color: #33cc77;
+  color: #fff;
+  padding: 0.25em 1.5em;
+}
+
+/* line 111, app/assets/stylesheets/theme.scss */
+.button:focus,
+.button:hover {
+  background-color: #28ad63;
+}
+
+/* ---------- ICONS ---------- */
+/* line 117, app/assets/stylesheets/theme.scss */
+.icons {
+  display: none;
+}
+
+/* line 121, app/assets/stylesheets/theme.scss */
+.icon {
+  fill: currentcolor;
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+}
+
+/* ---------- LOGIN ---------- */
+/* line 129, app/assets/stylesheets/theme.scss */
+.login {
+  width: 400px;
+  border-radius: 20px;
+  font-size: 15 px;
+}
+
+/* line 135, app/assets/stylesheets/theme.scss */
+.login:hover {
+  box-shadow: 3px 8px 30px #f9f7f7;
+}
+
+/* line 139, app/assets/stylesheets/theme.scss */
+.login__header {
+  background-color: #f95252;
+  border-top-left-radius: 1.25em;
+  border-top-right-radius: 1.25em;
+  color: #fff;
+  padding: 1.25em 1.625em;
+}
+
+/* line 147, app/assets/stylesheets/theme.scss */
+.login__header :first-child {
+  margin-top: 0;
+}
+
+/* line 151, app/assets/stylesheets/theme.scss */
+.login__header :last-child {
+  margin-bottom: 0;
+}
+
+/* line 155, app/assets/stylesheets/theme.scss */
+.login h2 .icon {
+  margin-right: 14px;
+}
+
+/* line 159, app/assets/stylesheets/theme.scss */
+.login__form {
+  background-color: #fff;
+  border-bottom-left-radius: 1.25em;
+  border-bottom-right-radius: 1.25em;
+  color: #777;
+  display: grid;
+  gap: 0.875em;
+  padding: 1.25em 1.625em;
+}
+
+/* line 169, app/assets/stylesheets/theme.scss */
+.login input {
+  border-radius: 0.1875em;
+}
+
+/* line 173, app/assets/stylesheets/theme.scss */
+.login input[type="email"],
+.login input[type="password"] {
+  background-color: #eee;
+  color: #777;
+  padding: 0.25em 0.625em;
+  width: 100%;
+}
+
+/* line 181, app/assets/stylesheets/theme.scss */
+.login input[type="submit"] {
+  display: block;
+  margin: 0 auto;
+}
+
+/* line 187, app/assets/stylesheets/theme.scss */
+a:hover {
+  color: #f95252;
+}
+
+/* line 191, app/assets/stylesheets/theme.scss */
+a:link, a:visited {
+  color: #496de1;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* line 192, app/assets/stylesheets/theme.scss */
+a:active, a:hover {
+  color: #496de1;
+  text-decoration: underline;
+}
+
+/* line 194, app/assets/stylesheets/theme.scss */
+p {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* line 199, app/assets/stylesheets/theme.scss */
+img {
+  margin: 0px;
+  padding: 0px;
+  border: none;
+}
+
+/* line 206, app/assets/stylesheets/theme.scss */
+#templatemo_container {
+  margin: 0 auto;
+  background: white;
+  border-radius: 10px;
+}
+
+/* menu */
+/* line 217, app/assets/stylesheets/theme.scss */
+#templatemo_menu {
+  height: 70px;
+  width: auto;
+  background-color: #e3dfdf;
+  border-radius: 10px;
+  background-color: #493f7b;
+}
+
+/* line 225, app/assets/stylesheets/theme.scss */
+#templatemo_menu li {
+  display: contents;
+  height: auto;
+}
+
+/* line 230, app/assets/stylesheets/theme.scss */
+#templatemo_menu ul li a {
+  float: left;
+  padding: 0 20px;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  background-color: #28ad63;
+  border-radius: 5px;
+  margin: 15px 20px;
+  transition: 0.5s;
+}
+
+/* line 245, app/assets/stylesheets/theme.scss */
+#templatemo_menu ul li a:hover {
+  color: white;
+  text-decoration: dotted;
+  background-color: #dfba69;
+  border-radius: 5px;
+  transform: scale(1.1, 1.1);
+}
+
+/* line 253, app/assets/stylesheets/theme.scss */
+#templatemo_menu li a, #templatemo_menu li .current {
+  background-color: #493f7b;
+}
+
+/* end of menu*/
+/* header */
+/* line 260, app/assets/stylesheets/theme.scss */
+#templatemo_header {
+  clear: both;
+  width: auto;
+  height: 285px;
+  padding: 0;
+  margin: 0;
+  background: url("https://blog.vicensvives.com/wp-content/uploads/2018/11/Evolucion-librerias-1.jpg") no-repeat;
+  background-size: 100%;
+  background-position: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+/* end of header */
+/* content */
+/* line 277, app/assets/stylesheets/theme.scss */
+.cont {
+  margin: 0 auto;
+  width: 720px;
+}
+
+/* line 279, app/assets/stylesheets/theme.scss */
+#templatemo_content {
+  clear: both;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  overflow: hidden;
+  background: url("https://media.istockphoto.com/id/929023224/es/vector/fondo-transparente-con-libros.jpg?b=1&s=612x612&w=0&k=20&c=mThKUVyZPE5ORgrrPtePoahnkjNJ6i7h8tYfG0CW4MM=");
+}
+
+/* line 289, app/assets/stylesheets/theme.scss */
+#templatemo_content_right .content_new {
+  width: 225px;
+  height: 280px;
+  padding: 10px;
+  display: inline-block;
+  padding: 10px;
+  background-color: #ebe6ec;
+  border-radius: 15px;
+  font-size: 30px;
+  transition: 0.5s;
+  margin: 15px 20px;
+  color: #7e4a4a;
+}
+
+/* line 304, app/assets/stylesheets/theme.scss */
+#templatemo_content_new {
+  font-size: 27px;
+  clear: both;
+  width: 1700px;
+  text-align: center;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+/* line 314, app/assets/stylesheets/theme.scss */
+#templatemo_content_new table {
+  font-size: 15px;
+  text-align: center;
+}
+
+/* line 319, app/assets/stylesheets/theme.scss */
+#templatemo_content_right {
+  justify-content: center;
+  justify-items: center;
+  overflow: hidden;
+}
+
+/* line 327, app/assets/stylesheets/theme.scss */
+#templatemo_content_right .templatemo_product_box {
+  display: inline-block;
+  width: 470px;
+  height: 550px;
+  padding: 10px;
+  background-color: #ebe6ec;
+  border-radius: 15px;
+  font-size: 17px;
+  transition: 0.5s;
+  margin: 15px 20px;
+  color: #7e4a4a;
+}
+
+/* line 341, app/assets/stylesheets/theme.scss */
+#templatemo_content_right .templatemo_product_box:hover {
+  transform: translateY(-15px);
+  box-shadow: 3px 8px 30px #496de1;
+}
+
+/* line 346, app/assets/stylesheets/theme.scss */
+#templatemo_content_right .templatemo_product_box_detail {
+  width: 225px;
+  height: 180px;
+  padding: 10px;
+  display: inline-block;
+  padding: 10px;
+  background-color: #ebe6ec;
+  border-radius: 15px;
+  font-size: 17px;
+  transition: 0.5s;
+  margin: 15px 20px;
+  color: #7e4a4a;
+}
+
+/* line 360, app/assets/stylesheets/theme.scss */
+#templatemo_content_right .templatemo_product_box_detail:hover {
+  transform: translateY(-15px);
+  box-shadow: 3px 8px 30px #496de1;
+}
+
+/* line 365, app/assets/stylesheets/theme.scss */
+#templatemo_content_right .templatemo_product_box_history {
+  display: inline-block;
+  width: 405px;
+  height: 380px;
+  padding: 10px;
+  background-color: #ebe6ec;
+  border-radius: 15px;
+  font-size: 17px;
+  transition: 0.5s;
+  margin: 15px 20px;
+  color: #7e4a4a;
+}
+
+/* line 378, app/assets/stylesheets/theme.scss */
+#templatemo_content_right .templatemo_product_box_history:hover {
+  transform: translateY(-15px);
+  box-shadow: 3px 8px 30px #496de1;
+}
+
+/* line 384, app/assets/stylesheets/theme.scss */
+#templatemo_content_right h3 {
+  padding: 0;
+  margin: 20px 40px 20px 0;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+/* line 391, app/assets/stylesheets/theme.scss */
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+/* line 396, app/assets/stylesheets/theme.scss */
+td {
+  padding: 10px;
+  background-color: #e3dfdf;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* line 402, app/assets/stylesheets/theme.scss */
+th {
+  border-radius: 20px;
+  font-size: 10px;
+  color: white;
+}
+
+/* line 408, app/assets/stylesheets/theme.scss */
+.title_book_table {
+  background-color: #dfba69;
+  height: 100px;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* line 416, app/assets/stylesheets/theme.scss */
+.title_detail_table {
+  background-color: #dfba69;
+  height: 50px;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* line 424, app/assets/stylesheets/theme.scss */
+.button_borrow {
+  background-color: #28ad63;
+  height: 40px;
+  color: white;
+  font-size: 20px;
+  transition: 0.5s;
+  border-radius: 70px;
+  cursor: pointer;
+}
+
+/* line 434, app/assets/stylesheets/theme.scss */
+.button_borrow:hover {
+  transform: scale(1.1, 1.1);
+}
+
+/* line 438, app/assets/stylesheets/theme.scss */
+.send_borrow {
+  background-color: #28ad63;
+  height: 40px;
+  color: white;
+  font-size: 20px;
+  width: 450px;
+  border-radius: 70px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+/* line 451, app/assets/stylesheets/theme.scss */
+.send_borrow:hover {
+  transform: scale(1.1, 1.1);
+}
+
+/* line 455, app/assets/stylesheets/theme.scss */
+.return_book {
+  background-color: #28ad63;
+  height: 40px;
+  color: white;
+  font-size: 20px;
+  width: 380px;
+  border-radius: 70px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+/* line 468, app/assets/stylesheets/theme.scss */
+.return_book:hover {
+  transform: scale(1.1, 1.1);
+}
+
+/* line 472, app/assets/stylesheets/theme.scss */
+.no_copies {
+  background-color: #aba5a5;
+  height: 40px;
+  color: white;
+  font-size: 20px;
+  color: white;
+  font-size: 20px;
+  width: 450px;
+  border-radius: 70px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* end of content */
+/* footer */
+/* line 490, app/assets/stylesheets/theme.scss */
+#templatemo_footer {
+  clear: both;
+  width: auto;
+  padding: 20px 0px 20px 0;
+  text-align: center;
+  border-top: 1px solid #25211e;
+  color: #999;
+  background-color: #111110;
+}
+
+/* line 500, app/assets/stylesheets/theme.scss */
+#templatemo_footer a {
+  color: #fff;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+/* end of footer */

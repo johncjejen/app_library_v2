@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Books</title>
+    </head>
+    <body>
+        <div id="templatemo_container">
+            <div id="templatemo_menu">
+                <ul>
+                    <% if current_user %>
+                        <li><a href="/" class="current">Hello <%= current_user.email %></a></li>
+                        <li><a href="/">Home</a></a></li>
+                        <% if current_user.admin? %>
+                            <li><a href="/books/new_book.html">Create Books</a></a></li>
+                        <% else %>
+                            <li> <a href="/books/my_books">My Books</a></li>            
+                        <% end %>
+                        <li><%= link_to "Log off", destroy_user_session_path, 'data-turbo-method': :delete%></li> 
+                    <% else %>
+                        <li><a href="/" class="current">You are not sign in</a></li>  
+                        <li><%= link_to "Sign up", new_user_registration_path %></li> 
+                        <li><%= link_to "Login", new_user_session_path %></li>
+                    <% end %>
+                </ul>
+            </div> 
+    
+            <div id="templatemo_header">
+               
+            </div> 
+              <h1>Books List</h1>
+            <div id="templatemo_content">
+                <div id="templatemo_content_right">
+                    <div class="subtitle_center">
+                        <h2 class="h2_class"><%= flash[:notice] %><h2>
+                    </div>
+                    <div >
+                        <%= form_tag({:controller => "books", :action => "home"},:method => "get", :multipart => true, :class =>'') do %>
+                            <%= text_field_tag :title, params[:title], class: "search", placeholder: "  Title" %>
+                            <%= submit_tag "Search", name: nil, class: "btn_search" %>
+                        <% end %>
+                    </div>
+                    
+                    <% @books.each do |book| %>
+                        <div class="templatemo_product_box">
+                            <table>
+                                <tr><th class="title_book_table" scope="row" colspan="2"><%=book.title.upcase%></th></tr>
+                            </table> 
+                                <span>
+                                    <% if book.copies< 1%>
+                                        <a href="/" class="send_borrow"><button disabled class="no_copies">Borrow</button></a>
+                                    <%else%>
+                                        <% if current_user %>
+                                            <% if current_user.admin? %>
+                                               <a href="/" class="send_borrow"><button disabled class="no_copies">Borrow</button></a>
+                                            <% else %>
+                                                <a href="/borrow_book/<%=book.id%>" class="send_borrow"><button class="send_borrow">Borrow</button></a>
+                                             <% end %>
+                                        <% else %>
+                                            <a href="/users/sign_in" class="send_borrow"><button class="send_borrow">Borrow</button></a>
+                                        <%end%>
+                                    <%end%>
+                            <table>
+                                <tr><td>Author:</td>
+                                <td><%=book.author? ? book.author : 'No information'%></td></tr>
+                                <tr><td>Genre:</td>
+                                <td><%=book.genre.capitalize%></td></tr>
+                                <tr><td>Subgenre:</td>
+                                <td><%=book.subgenre.capitalize%></td></tr>
+                                <tr><td>Pages:</td>
+                                <td><%=book.pages%></td></tr>
+                                <tr><td>Publisher:</td>
+                                <td><%=book.publisher? ? book.publisher : 'No information'%></td></tr>
+                                <tr><td>Available Copies:</td>
+                                <td><%=book.copies%></td></tr>
+                            </table>
+                            <% if current_user %>
+                            <h3><%= link_to "Book details", "book_detail/#{book.id}",:style=>'text-decoration : none' %></h3>
+                                <% if current_user.admin? %>
+                                    <h3><%= link_to "Edit", "edit_book/#{book.id}",:style=>'text-decoration : none' %></h3>
+                                    <h3><%= link_to "Delete", "delete_book/#{book.id}",  data: { turbo_confirm: 'Are you sure?'}, :style=>'text-decoration : none'%></h3>
+                                <%end%>
+                            <%end%>
+                        </div>
+                    <%end%>
+                </div> 
+            </div>
+        
+            <div id="templatemo_footer">
+            
+                <a href="/">Development on Ruby on Rails</a> | 
+                Copyright © 2022 <a href="https://linkedin.com/in/ing-john-carlos-jejen-corredor/"><strong>John Jejen</strong></a> 
+            
+            </div> 
+        </div>
+    </body>
+</html>
+
+
+

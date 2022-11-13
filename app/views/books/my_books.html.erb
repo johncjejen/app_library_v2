@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My books</title>
+    </head>
+    <body>
+        <div id="templatemo_container">
+            <div id="templatemo_menu">
+                <ul>
+                    <% if current_user %>
+                        <li><a href="/" class="current">Hello <%= current_user.email %></a></li>
+                        <li><a href="/">Home</a></a></li>
+                        <% if current_user.admin? %>
+                            <li><a href="/books/new_book.html">Create Books</a></a></li>
+                        <% else %>
+                            <li> <a href="/books/my_books">My Books</a></li>            
+                        <% end %>
+                        <li><%= link_to "Log off", destroy_user_session_path, 'data-turbo-method': :delete%></li> 
+                    <% else %>
+                        <li><a href="/" class="current">You are not sign in</a></li>  
+                        <li><%= link_to "Sign up", new_user_registration_path %></li> 
+                        <li><%= link_to "Login", new_user_session_path %></li>
+                    <% end %>
+                </ul>
+            </div> <!-- end of menu -->
+    
+            <div id="templatemo_header">
+               
+            </div> <!-- end of header -->
+              <h1>My books</h1>
+            <div id="templatemo_content">
+                <div id="templatemo_content_right">
+                     <div class="subtitle_center">
+                        <h2 class="h2_class"><%= flash[:notice] %><h2>
+                    </div>
+                    <% if !@my_books.blank? %>
+                        <% @my_books.each do |my_book| %>
+                            <div class="templatemo_product_box_history">
+                                <table>
+                                    <tr><th class="title_book_table" scope="row" colspan="2"><%=my_book.book.title.upcase%></th></tr>
+                                    <tr><th class="title_detail_table" scope="row" colspan="2">Copy #<%=my_book.copy_number%></th></tr>
+                                    <% if my_book.status == 'borrowed'%>
+                                        <tr><th scope="row" colspan="2"><a href="/return_book/<%= my_book.id%>" class="button_borrow" style="text-decoration : none; color:white; width:100px" ><button class="return_book">Return</button></a></th></tr>
+                                    <% else %>
+                                        <tr><td>Return Date</td>
+                                        <td><%=my_book.return_date%></tr></td>
+                                    <% end %>
+                                    <tr><td>Due Date</td>
+                                    <td><%=my_book.due_date%></tr></td>
+                                    <tr><td>Status</td>
+                                    <td><%=my_book.status%></tr></td>
+                                </table>
+                            </div>
+                        <% end %>
+                    <% else %>
+                        <p>You don't have boooks</p>
+                    <% end %>
+                </div> 
+            </div>
+    
+            <a href="/" id="back_btn" style="text-decoration:none; text-align:center">Back</a>
+
+            <div id="templatemo_footer">
+            
+                <a href="/">Development on Ruby on Rails</a> | 
+                Copyright © 2022 <a href="https://linkedin.com/in/ing-john-carlos-jejen-corredor/"><strong>John Jejen</strong></a> 
+            
+            </div> 
+        </div>
+    </body>
+</html>
