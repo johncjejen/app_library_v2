@@ -53,6 +53,11 @@ class BooksController < ApplicationController
 
       cont_copies = 1
       add_copies = (params_copies - qnty_exist_copies)
+
+      notifications = EmailNotification.where('activated = true and book_id=?', book_id)
+
+      send_email_notification = send_email_notify(notifications,add_copies)
+
       while cont_copies <= add_copies do
 
         new_copy_number = qnty_exist_copies + cont_copies
@@ -259,6 +264,10 @@ class BooksController < ApplicationController
     book.copies = new_number_copies
     book.save
 
+    notifications = EmailNotification.where('activated = true and book_id=?', book.id)
+
+    send_email_notification = send_email_notify(notifications,new_number_copies)
+
     redirect_to '/books/my_books', notice: "Book returned"
 
   end
@@ -279,6 +288,76 @@ class BooksController < ApplicationController
     
     @copy_history_details = CopyBook.getcopyhistory(copy_book.books_id,copy_book.copy_number)
 
+  end
+
+  def notification_book
+
+    book_id = params[:id]
+    user_id = current_user.id
+
+    notifications = EmailNotification.where('activated = true and user_id=? and book_id=?', user_id, book_id )
+
+    if notifications.blank?
+
+      notification = EmailNotification.new
+      notification.user_id = user_id
+      notification.book_id = book_id
+      notification.request_date = DateTime.current.to_date
+      notification.save
+
+      #NotifyBookMailer.send_mail_notify.deliver_now
+
+      redirect_to '/', notice: 'Active notification'
+
+    else
+
+      redirect_to '/', notice: 'Active notification'
+
+    end
+
+  end
+
+  def send_email_notify(notifications,copies)
+
+    qnt_emails = notifications.length.to_i
+    new_copies = copies.to_i
+
+    if new_copies > qnt_emails
+
+      notifications.each do |notification|
+        user_email = User.find(notification.user_id)
+        user_email = user_email.email
+        book_title = Book.find(notification.book_id)
+        book_title = book_title.title
+
+        NotifyBookMailer.with(user: @user_email, book: @book_title).send_mail_notify.deliver_now
+        email_notify = EmailNotification.find(notification.id)
+        email_notify.notification_date = DateTime.current.to_date
+        email_notify.activated = 0
+        email_notify.save
+
+      end
+
+    else
+
+      count_send_mails = 1
+
+      while count_send_mails <= new_copies do
+
+        notifications.each do |notification|
+          @user_email = User.find(notification.user_id)
+          @book_title = Book.find(notification.book_id)
+  
+          NotifyBookMailer.with(user: @user_email, book: @book_title).send_mail_notify.deliver_now
+          email_notify = EmailNotification.find(notification.id)
+          email_notify.notification_date = DateTime.current.to_date
+          email_notify.activated = 0
+          email_notify.save
+          count_send_mails += 1 
+        end
+
+      end
+    end
   end
 
 end

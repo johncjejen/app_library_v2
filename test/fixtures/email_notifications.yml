@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  book: one
+  request_date: 2022-11-13
+  notification_date: 2022-11-13
+  activated: false
+
+two:
+  user: two
+  book: two
+  request_date: 2022-11-13
+  notification_date: 2022-11-13
+  activated: false

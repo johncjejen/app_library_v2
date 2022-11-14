@@ -50,7 +50,7 @@
                             </table> 
                                 <span>
                                     <% if book.copies< 1%>
-                                        <a href="/" class="send_borrow"><button disabled class="no_copies">Borrow</button></a>
+                                        <button class="send_borrow"><%= link_to 'No copies available, notify me', books_notification_book_path(id: book.id),class: "send_borrow", :style=>'text-decoration : none; color:white' %></button>
                                     <%else%>
                                         <% if current_user %>
                                             <% if current_user.admin? %>

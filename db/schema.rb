@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_13_201616) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_14_011456) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,6 +55,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_201616) do
     t.index ["books_id"], name: "index_copy_books_on_books_id"
   end
 
+  create_table "email_notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.date "request_date"
+    t.date "notification_date"
+    t.boolean "activated"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_email_notifications_on_book_id"
+    t.index ["user_id"], name: "index_email_notifications_on_user_id"
+  end
+
   create_table "libraries", force: :cascade do |t|
     t.string "branch_name"
     t.string "address"
@@ -80,4 +92,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_201616) do
   add_foreign_key "books", "libraries"
   add_foreign_key "borrow_books", "books"
   add_foreign_key "borrow_books", "users"
+  add_foreign_key "email_notifications", "books"
+  add_foreign_key "email_notifications", "users"
 end

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get :my_books
     post :overdue_book
     get :home
+    get :notification_book
 
   end
 
