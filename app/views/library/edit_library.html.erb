@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Edit Library</title>
+	</head>
+	<body>
+        <div id="templatemo_container">
+            <div id="templatemo_menu">
+                <ul>
+                    <li><a href="/" class="current">Hello <%= current_user.email %></a></li>
+                    <li><a href="/">Home</a></a></li>
+                        <% if current_user.user? %>
+                        <script type="text/javascript">
+                            alert("Access Denied!");
+                            window.location.href="/"
+                        </script>
+                    <% end %>
+                    <li><%= link_to "Log off", destroy_user_session_path, 'data-turbo-method': :delete%></li> 
+                    <li><a href="/">Back</a></li>
+                </ul>
+            </div> 
+    
+            <div id="templatemo_header">
+            </div> 
+            
+            <div id="templatemo_content">
+                <div id="templatemo_content_new">
+                    <div class="title_center">
+                        <h2 class="h2_class">Edit book</h2>
+                    </div>
+                    <div class="content_new">
+                        <%= form_tag({:controller => "library", :action => "create_library"},:method => "post", :multipart => true, :class =>'') do %>
+                            <table>
+                                <tr>
+                                    <td id="font_create">Branch Name</td>
+                                    <td id="font_create"><input type="text" name="branch_name" required="" value="<%= !@library.blank? ?  @library.branch_name : ' '%>" ></td>
+                                    <td id="font_create">Address</td>
+                                    <td id="font_create"><input type="text" name="address" 
+                                    required="" value="<%= !@library.blank? ?  @library.address : ' '%>" ></td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td id="font_create">Phone number</td>
+                                    <td id="font_create"><input type="text" name="phone_number"  required="" value="<%= !@library.blank? ?  @library.phone_number : ' '%>" ></td>
+                                    
+                                </tr>
+                                <input type="hidden" name="id" value ="<%= @library.id%>" >
+                            </table>
+                           <p>
+                                <input type="submit"  value="Save" id="create_btn" >
+                                <a href="/library/home.html" id="back_btn" style="text-decoration:none; text-align:center">Back</a>
+                            </p>
+                        <%end%>
+                    </div>
+                </div> 
+            </div>
+            <div id="templatemo_footer">
+                <a href="/">Development on Ruby on Rails</a> | 
+                Copyright © 2022 <a href="https://linkedin.com/in/ing-john-carlos-jejen-corredor/"><strong>John Jejen</strong></a> 
+            </div> 
+        </div>
+	</body>
+</html>

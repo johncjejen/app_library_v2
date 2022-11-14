@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>New Library</title>
+	</head>
+	<body>
+        <div id="templatemo_container">
+            <div id="templatemo_menu">
+                <ul>
+                    <% if current_user %>
+                        <li><a href="/" class="current">Hello <%= current_user.email %></a></li>
+                        <li><a href="/">Books</a></a></li>
+                        <li><a href="/library/home.html">Libraries</a></a></li>
+                        <% if current_user.user? %>
+                            <script type="text/javascript">
+                               alert("Access Denied!");
+                                window.location.href="/"
+                            </script>
+                        <% end %>
+                        <li><%= link_to "Log off", destroy_user_session_path, 'data-turbo-method': :delete%></li> 
+                    <% else %>
+                        <li><a href="/" class="current">You are not sign in</a></li>  
+                        <li><%= link_to "Sign up", new_user_registration_path %></li> 
+                        <li><%= link_to "Login", new_user_session_path %></li>
+                    <% end %>
+                </ul>
+            </div>
+    
+            <div id="templatemo_header">
+            </div>
+            
+            <div id="templatemo_content">
+                <div id="templatemo_content_new">
+                    <div class="content_new">
+                        <%= form_tag({:controller => "library", :action => "create_library"},:method => "post", :multipart => true, :class =>'') do %>
+                            <table>
+                                <tr><div class="title_center"><h2 class="h2_class">Create library</h2></div></tr>
+                                <tr></tr>
+                                <tr>
+                                    <td id="font_create">Branch name</td>
+                                    <td id="font_create"><input style="border-radius: 5px;" type="text" name="branch_name" required="" ></td>
+                                    <td id="font_create">Address</td>
+                                    <td id="font_create"><input style="border-radius: 5px;" type="text" name="address" required ></td>
+                                </tr>
+                                <tr>
+                                    <td id="font_create">Phone Number</td>
+                                    <td id="font_create"><input style="border-radius: 5px;" type="number" name="phone_number"  required="" ></td>
+                                </tr>
+                                <tr></tr>
+                                <tr></tr>
+                            </table>
+                            <p>
+                                <input type="submit"  value="Create" id="create_btn" >
+                                <a href="/library/home.html" style="text-decoration:none;"><button id="back_btn_new">Back</button></a>
+                            </p>
+                        <%end%>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="templatemo_footer">
+                <a href="/">Development on Ruby on Rails</a> | 
+                Copyright © 2022 <a href="https://linkedin.com/in/ing-john-carlos-jejen-corredor/"><strong>John Jejen</strong></a> 
+            </div> 
+        </div>
+	</body>
+</html>

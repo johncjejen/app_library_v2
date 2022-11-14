@@ -9,7 +9,8 @@
                 <ul>
                     <% if current_user %>
                         <li><a href="/" class="current">Hello <%= current_user.email %></a></li>
-                        <li><a href="/">Home</a></a></li>
+                        <li><a href="/">Books</a></a></li>
+                        <li><a href="/library/home.html">Libraries</a></a></li>
                         <% if current_user.user? %>
                             <script type="text/javascript">
                                alert("Access Denied!");
@@ -69,6 +70,8 @@
                                 <tr>
                                     <td id="font_create">Copies</td>
                                     <td id="font_create"><input style="border-radius: 5px;" type="number" name="copies"  required="" ></td>
+                                    <td id="font_create">Library</td>
+                                    <td id="font_create"><input style="border-radius: 5px;" type="text" name="library"  required="" ></td>
                                 </tr>
                                 <tr></tr>
                                 <tr></tr>

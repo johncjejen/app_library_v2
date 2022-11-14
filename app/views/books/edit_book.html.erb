@@ -57,7 +57,8 @@
                                 <tr>
                                     <td id="font_create">Total Copies</td>
                                     <td id="font_create"><input type="number" name="copies"  required="" value="<%= !@copies_edit_book.blank? ?  @copies_edit_book : ' ' %>" ></td>
-                                    
+                                    <td id="font_create">Library</td>
+                                    <td id="font_create"><input type="text" name="library" value="<%= !@library_edit_book.blank? ?  @library_edit_book.branch_name : ' '%>"></td>
                                 </tr>
                                 <tr></tr>
                                 <tr></tr>

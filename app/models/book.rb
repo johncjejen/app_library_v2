@@ -1,4 +1,5 @@
 class Book < ApplicationRecord
+    belongs_to :library
     validates :title, :genre, :subgenre, :pages, :copies, presence: true
 
     enum activated: [:no, :yes]

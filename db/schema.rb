@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_13_180604) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_13_201616) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_180604) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "activated", default: 1
+    t.bigint "library_id", null: false
+    t.index ["library_id"], name: "index_books_on_library_id"
   end
 
   create_table "borrow_books", force: :cascade do |t|
@@ -53,6 +55,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_180604) do
     t.index ["books_id"], name: "index_copy_books_on_books_id"
   end
 
+  create_table "libraries", force: :cascade do |t|
+    t.string "branch_name"
+    t.string "address"
+    t.integer "phone_number"
+    t.boolean "activated"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -66,6 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_180604) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "books", "libraries"
   add_foreign_key "borrow_books", "books"
   add_foreign_key "borrow_books", "users"
 end

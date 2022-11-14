@@ -18,7 +18,21 @@ class BooksController < ApplicationController
     book_id = params[:id]
     params_copies = params[:copies].to_i
     qnty_exist_copies = 0
-    
+
+    library_name = params[:library]
+    libraries = Library.where('branch_name=?',library_name).take
+
+    if libraries.blank?
+        library_create = Library.new
+        library_create.branch_name = params[:library]
+        library_create.address = 'Canada'
+        library_create.phone_number = 0
+        library_create.save
+        @library_id = library_create.id
+    else
+      @library_id = libraries.id
+    end
+
     @book = Book.new if book_id.blank?
     @book = Book.find(book_id) if !book_id.blank?
    
@@ -29,6 +43,7 @@ class BooksController < ApplicationController
     @book.pages = params[:pages]
     @book.publisher = params[:publisher]
     @book.copies = params_copies
+    @book.library_id = @library_id
     @book.save
 
     qnty_exist_copies = CopyBook.where('copy_books.deactived_copy = 0 and books_id=?',book_id).count  if !book_id.blank?
@@ -87,22 +102,39 @@ class BooksController < ApplicationController
     name_file = file.original_filename
 
     table = CSV.parse(File.read(file.tempfile), headers: true)
+
+    libraries = Library.all
     
     if !file.blank?
       table.each_with_index do |sh,idx|
 
-        params_copies = sh[6].to_i
+        library_name = sh[0]
+        library = libraries.where('branch_name=?',library_name).take
+    
+        if library.blank?
+            library_create = Library.new
+            library_create.branch_name = library_name
+            library_create.address = 'Canada'
+            library_create.phone_number = 0
+            library_create.save
+            @library_id_csv = library_create.id
+        else
+          @library_id_csv = library.id
+        end
 
-        title_book = sh[0]
+        params_copies = sh[7].to_i
+
+        title_book = sh[1]
         @book_csv = Book.where('title=?',title_book).take if !title_book.blank?
         @book_csv = Book.new if @book_csv.blank?
         @book_csv.title = title_book
-        @book_csv.author = sh[1]
-        @book_csv.genre = sh[2]
-        @book_csv.subgenre = sh[3]
-        @book_csv.pages = sh[4]
-        @book_csv.publisher = sh[5]
+        @book_csv.author = sh[2]
+        @book_csv.genre = sh[3]
+        @book_csv.subgenre = sh[4]
+        @book_csv.pages = sh[5]
+        @book_csv.publisher = sh[6]
         @book_csv.copies = params_copies
+        @book_csv.library_id = @library_id_csv
         @book_csv.save
 
         cont_books +=1
@@ -152,9 +184,10 @@ class BooksController < ApplicationController
   end
 
   def edit_book
-    book_id=params[:id]
+    book_id = params[:id]
     @books = Book.find(book_id)
     @copies_edit_book = CopyBook.where('books_id=? and copy_books.deactived_copy = 0',book_id).count
+    @library_edit_book = Library.find(@books.library_id)
   end
 
   def delete_book

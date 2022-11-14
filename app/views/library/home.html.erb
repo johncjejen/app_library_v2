@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Libraries</title>
+    </head>
+    <body>
+        <div id="templatemo_container">
+            <div id="templatemo_menu">
+                <ul>
+                    <li><a href="/" class="current">Hello <%= current_user.email %></a></li>
+                    <li><a href="/">Books</a></a></li>
+                    <li><a href="/library/home.html">Libraries</a></a></li>
+                    <li><a href="/books/new_book.html">Create Books</a></a></li>
+                    <li><a href="/library/new_library.html">Create Library</a></a></li>
+                    <li><%= link_to "Log off", destroy_user_session_path, 'data-turbo-method': :delete%></li> 
+                </ul>
+            </div> 
+    
+            <div id="templatemo_header">
+               
+            </div> 
+              <h1>Libraries List</h1>
+            <div id="templatemo_content">
+                <div id="templatemo_content_right">
+                    <div class="subtitle_center">
+                        <h2 class="h2_class"><%= flash[:notice] %><h2>
+                    </div>
+                    <div >
+                        <%= form_tag({:controller => "library", :action => "home"},:method => "get", :multipart => true, :class =>'') do %>
+                            <%= text_field_tag :branch_name, params[:branch_name], class: "search", placeholder: "  Branch Name" %>
+                            <%= submit_tag "Search", name: nil, class: "btn_search" %>
+                        <% end %>
+                    </div>
+                    
+                    <% @libraries.each do |library| %>
+                        <div class="templatemo_product_box">
+                            <table>
+                                <tr><th class="title_book_table" scope="row" colspan="2"><%=library.branch_name%></th></tr>
+                                <span>
+                                <tr><td>Branch Name:</td>
+                                <td><%=library.branch_name? ? library.branch_name : 'No information'%></td></tr>
+                                <tr><td>Address:</td>
+                                <td><%=library.address%></td></tr>
+                                <tr><td>Phone number:</td>
+                                <td><%=library.phone_number%></td></tr>
+                            </table>
+                                <h3><%= link_to "Edit", "edit_library/#{library.id}",:style=>'text-decoration : none' %></h3>
+                                <h3><%= link_to "Delete", "delete_library/#{library.id}",  data: { turbo_confirm: 'Are you sure?'}, :style=>'text-decoration : none'%></h3>
+                        </div>
+                    <%end%>
+                </div> 
+            </div>
+        
+            <div id="templatemo_footer">
+            
+                <a href="/">Development on Ruby on Rails</a> | 
+                Copyright © 2022 <a href="https://linkedin.com/in/ing-john-carlos-jejen-corredor/"><strong>John Jejen</strong></a> 
+            
+            </div> 
+        </div>
+    </body>
+</html>
+
+
+
