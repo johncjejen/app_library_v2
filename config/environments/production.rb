@@ -78,14 +78,14 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.action_mailer.default_url_options = { :host => "app-library-v1.herokuapp.com" }
+  config.action_mailer.default_url_options = { :host => "app-library-v2.herokuapp.com" }
 
   config.action_mailer.perform_deliveries = true
   ActionMailer::Base.smtp_settings = {
     :user_name => 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
     :password => Rails.application.credentials.dig(:api_sendgrid),
     # This is the secret sendgrid API key which was issued during API key creation
-    :domain => 'app-library-v1.herokuapp.com',
+    :domain => 'app-library-v2.herokuapp.com',
     :address => 'smtp.sendgrid.net',
     :port => 587,
     :authentication => :plain,
