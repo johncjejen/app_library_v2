@@ -130,7 +130,7 @@ class BooksController < ApplicationController
         params_copies = sh[7].to_i
 
         title_book = sh[1]
-        @book_csv = Book.where('title=?',title_book).take if !title_book.blank?
+        @book_csv = Book.where('title=? and library_id = ?',title_book,@library_id_csv).take if !title_book.blank?
         @book_csv = Book.new if @book_csv.blank?
         @book_csv.title = title_book
         @book_csv.author = sh[2]
