@@ -15,7 +15,12 @@ Rails.application.routes.draw do
     post :overdue_book
     get :home
     get :notification_book
+   
 
+  end
+
+  resources :books do
+    get '/page/:page', action: :home, on: :collection
   end
 
   namespace :library do
@@ -33,6 +38,7 @@ Rails.application.routes.draw do
   get "book_detail/copy_history/:id" => 'books#copy_history'
   get "return_book/:id" => 'books#return_book'
   get "borrow_book/:id" => 'books#borrow_book'
+ 
 
   get "library/edit_library/:id" => 'library#edit_library'
   get "library/delete_library/:id" => 'library#delete_library'
