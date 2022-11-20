@@ -5,10 +5,10 @@ class BooksController < ApplicationController
   
   def home
    
-    @books = Book.where('activated = 1').order('title')
+    @books = Book.where('activated = 1').order('title').page params[:page]
 
     if params[:title].present?
-      @books= @books.where("title ILIKE ?", "%#{params[:title]}%")
+      @books= @books.where("title ILIKE ?", "%#{params[:title]}%").page params[:page]
     end
 
   end
