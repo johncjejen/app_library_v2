@@ -15,7 +15,7 @@ steps:
     versionSpec: '>= 3.1.2'
     addToPath: true
   
-- script: gem install rails && rails -v
+- script: gem install rails && rails -v 3.1.2
   displayName: 'gem install rails'
 
 - script: |
