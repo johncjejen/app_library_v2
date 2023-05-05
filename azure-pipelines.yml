@@ -14,9 +14,6 @@ steps:
   inputs:
     versionSpec: '>= 3.1.2'
     addToPath: true
-  
-- script: gem install rails && rails -v
-  displayName: 'gem install rails'
 
 - script: |
     gem install bundler
