@@ -12,7 +12,8 @@ pool:
 steps:
 - task: UseRubyVersion@0
   inputs:
-    versionSpec: '>= 2.5'
+    versionSpec: '== 3.1.2'
+    addToPath: true
 
 - script: |
     gem install bundler
