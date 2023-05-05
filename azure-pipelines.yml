@@ -12,7 +12,7 @@ pool:
 steps:
 - task: UseRubyVersion@0
   inputs:
-    versionSpec: '== 3.1.2'
+    versionSpec: '>= 3.1.2'
     addToPath: true
   
 - script: gem install rails && rails -v
