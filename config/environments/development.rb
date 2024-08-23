@@ -71,15 +71,16 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
 
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :letter_opener
   ActionMailer::Base.smtp_settings = {
-    :user_name => 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
-    :password => Rails.application.credentials.dig(:api_sendgrid),
-    # This is the secret sendgrid API key which was issued during API key creation
-    :domain => 'https://app-library-v2.herokuapp.com/',
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    # :user_name => 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
+    # :password => Rails.application.credentials.dig(:api_sendgrid),
+    # # This is the secret sendgrid API key which was issued during API key creation
+    # :domain => 'https://app-library-v2.herokuapp.com/',
+    # :address => 'smtp.sendgrid.net',
+    # :port => 587,
+    # :authentication => :plain,
+    # :enable_starttls_auto => true
   }
 
 end

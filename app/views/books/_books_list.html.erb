@@ -1,0 +1,51 @@
+<% if books.any? %>
+    <% books.each do |book| %>
+        <div class="templatemo_product_box">
+            <table>
+                <tr><th class="title_book_table" scope="row" colspan="2"><%=book.title.upcase%></th></tr>
+            </table> 
+            <span>
+                <% if book.copies< 1%>
+                    <button class="send_borrow"><%= link_to 'No copies available, notify me', books_notification_book_path(id: book.id),class: "send_borrow", :style=>'text-decoration : none; color:white' %></button>
+                <%else%>
+                    <% if current_user %>
+                        <% if current_user.admin? %>
+                            <a href="/" class="send_borrow"><button disabled class="no_copies">Borrow</button></a>
+                        <% else %>
+                            <a href="/borrow_book/<%=book.id%>" class="send_borrow"><button class="send_borrow">Borrow</button></a>
+                            <% end %>
+                    <% else %>
+                        <a href="/users/sign_in" class="send_borrow"><button class="send_borrow">Borrow</button></a>
+                    <%end%>
+                <%end%>
+            </span>
+            <table>
+                <tr><td>Author:</td>
+                <td><%=book.author? ? book.author : 'No information'%></td></tr>
+                <tr><td>Genre:</td>
+                <td><%=book.genre.capitalize%></td></tr>
+                <tr><td>Subgenre:</td>
+                <td><%=book.subgenre.capitalize%></td></tr>
+                <tr><td>Pages:</td>
+                <td><%=book.pages%></td></tr>
+                <tr><td>Publisher:</td>
+                <td><%=book.publisher? ? book.publisher : 'No information'%></td></tr>
+                <tr><td>Available Copies:</td>
+                <td><%=book.copies%></td></tr>
+                <tr><td>Library:</td>
+                <td><a href="/library/library_detail/<%=book.library.id%>", style='text-decoration : none'><%=book.library.branch_name.capitalize%></a></td></tr>
+            </table>
+            <% if current_user %>
+                <h3><%= link_to "Book details", "book_detail/#{book.id}",:style=>'text-decoration : none' %></h3>
+                <% if current_user.admin? %>
+                    <h3><%= link_to "Edit", "edit_book/#{book.id}",:style=>'text-decoration : none' %></h3>
+                    <h3><%= link_to "Delete", "delete_book/#{book.id}",  data: { turbo_confirm: 'Are you sure?'}, :style=>'text-decoration : none'%></h3>
+                <%end%>
+            <%end%>
+        </div>
+    <%end%>
+<% else%>
+    <h2>No data</h2>
+<% end %>
+
+<h3><%= paginate books %></h3>

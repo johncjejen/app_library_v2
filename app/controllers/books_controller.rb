@@ -5,11 +5,23 @@ class BooksController < ApplicationController
   
   def home
    
-    @books = Book.where('activated = 1').order('title').page params[:page]
+    @books = Book.where('activated = 1').order('title').page(params[:page]).per(10)
 
-    if params[:title].present?
-      @books= @books.where("title ILIKE ?", "%#{params[:title]}%").page params[:page]
+    # if params[:title].present?
+    #   @books= @books.where("title ILIKE ?", "%#{params[:title]}%").page params[:page]
+    # end
+
+    if params[:search].present?
+      book_search = params[:search]
+      @books= @books.where("title ILIKE ?", "%#{book_search}%").page(params[:page]).per(10)
+
+      respond_to do |format|
+        format.html
+        format.turbo_stream { render partial: "books_list", locals: { books: @books}}
+      end
     end
+
+    
 
   end
 
