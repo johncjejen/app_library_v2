@@ -1,6 +1,30 @@
-/config/database.yml
-/log/
 /log/*
-/public/*
 /tmp/*
-/vendor/
+/config/database.yml
+/config/secrets.yml
+
+# Ignore byebug command history file.
+.byebug_history
+
+# Ignore bundler config.
+/vendor/bundle
+
+# Ignore gems already bundled in vendor directory.
+/vendor/ruby/
+
+# Ignore node_modules if using node/webpack
+/node_modules
+
+# Ignore Yarn files
+/yarn-error.log
+.yarn-integrity
+
+# Ignore Sprockets compiled files
+/public/assets
+
+# Ignore uploaded files in development
+/storage/*
+!/storage/.keep
+
+# Ignore the secret environment variables file.
+.env
